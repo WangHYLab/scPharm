@@ -1,6 +1,6 @@
 Package: scPharm
 Title: Identification of pharmacological subpopulations of single cells for precision medicine in cancers
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c(person("Peng", "Tian", email = "2131443@tongji.edu.cn",
   role = c("aut", "cre")),  person("Jie", "Zheng", role= c("aut", "ctb"), email = "2210791@tongji.edu.cn"),
   person("Haiyun", "Wang", role= c("aut", "ctb"), email = "wanghaiyun@tongji.edu.cn"))
