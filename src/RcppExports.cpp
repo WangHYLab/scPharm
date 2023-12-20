@@ -11,6 +11,18 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
+// fastPDist
+NumericMatrix fastPDist(NumericMatrix Ar, NumericMatrix Br);
+RcppExport SEXP _scPharm_fastPDist(SEXP ArSEXP, SEXP BrSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type Ar(ArSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type Br(BrSEXP);
+    rcpp_result_gen = Rcpp::wrap(fastPDist(Ar, Br));
+    return rcpp_result_gen;
+END_RCPP
+}
 // SparseMCAStep1
 List SparseMCAStep1(arma::sp_mat X);
 RcppExport SEXP _scPharm_SparseMCAStep1(SEXP XSEXP) {
@@ -37,6 +49,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_scPharm_fastPDist", (DL_FUNC) &_scPharm_fastPDist, 2},
     {"_scPharm_SparseMCAStep1", (DL_FUNC) &_scPharm_SparseMCAStep1, 1},
     {"_scPharm_MCAStep2", (DL_FUNC) &_scPharm_MCAStep2, 3},
     {NULL, NULL, 0}

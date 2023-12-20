@@ -14,15 +14,16 @@ LazyData: true
 Depends:
     R (>= 4.0),
     Seurat (>= 4.0.0)
+biocViews:
 Imports:
-    CelliD (>= 1.0.0),
-    fgsea (>= 1.20.0),
+    CelliD,
+    fgsea (>= 1.16.0),
     Rcpp (>= 1.0.11),
     RcppArmadillo (>= 0.12.4.1.0),
-    copykat (>= 1.1.0),
+    copykat (>= 1.0.6),
     stringr (>= 1.5.0),
     mixtools (>= 2.0.0),
     dplyr (>= 1.1.2),
-    sparseMatrixStats (>= 1.6.0),
+    sparseMatrixStats (>= 1.2.1),
     irlba (>= 2.3.5.1)
 LinkingTo: Rcpp, RcppArmadillo

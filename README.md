@@ -11,11 +11,10 @@ scPharm is a computational framework tailored for scRNA-seq data, integrating ph
 ## Installation
 ***
 
-In order to use scPharm with R version >= 4.0, please install the legacy branch of the repository.
-
 Within R, set first:
 ```
 install.packages("remotes")
+install_github("navinlabcode/copykat")
 ```
 To install CelliD then just type:
 ```
