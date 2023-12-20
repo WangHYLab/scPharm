@@ -1,0 +1,28 @@
+Package: scPharm
+Title: Identification of pharmacological subpopulations of single cells for precision medicine in cancers
+Version: 1.0.0
+Authors@R: c(person("Peng", "Tian", email = "2131443@tongji.edu.cn",
+  role = c("aut", "cre")),  person("Jie", "Zheng", role= c("aut", "ctb"), email = "2210791@tongji.edu.cn"),
+  person("Haiyun", "Wang", role= c("aut", "ctb"), email = "wanghaiyun@tongji.edu.cn"))
+Description: scPharm is a computational framework tailored for scRNA-seq data, integrating pharmacogenomics profiles to uncover therapeutic heterogeneity within tumours at single-cell resolution.
+    The tool not only prioritizes tailored drugs but also provides insight into combination therapy regimen and drug toxicity in cancers.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+LazyData: true
+Depends:
+    R (>= 4.0),
+    Seurat (>= 4.0.0)
+Imports:
+    CelliD (>= 1.0.0),
+    fgsea (>= 1.20.0),
+    Rcpp (>= 1.0.11),
+    RcppArmadillo (>= 0.12.4.1.0),
+    copykat (>= 1.1.0),
+    stringr (>= 1.5.0),
+    mixtools (>= 2.0.0),
+    dplyr (>= 1.1.2),
+    sparseMatrixStats (>= 1.6.0),
+    irlba (>= 2.3.5.1)
+LinkingTo: Rcpp, RcppArmadillo
