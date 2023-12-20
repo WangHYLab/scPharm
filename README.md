@@ -16,6 +16,9 @@ In order to use scPharm with R version >= 4.0, please install the legacy branch 
 Within R, set first:
 ```
 install.packages("remotes")
+library(remotes)
+install_github("navinlabcode/copykat")
+install_github("RausellLab/CelliD")
 ```
 To install CelliD then just type:
 ```
@@ -60,6 +63,8 @@ Dse <- scPharmDse(scPharmIdentify.result)
 ***
 
 Tian P, Zheng J, Xu Y, et al. scPharm: identifying pharmacological subpopulations of single cells for precision medicine in cancers. Published online December 12, 2023. doi:10.1101/2023.12.11.571182
+        
+        
         
         
   
