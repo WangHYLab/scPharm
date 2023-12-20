@@ -19,7 +19,7 @@ install.packages("remotes")
 ```
 To install CelliD then just type:
 ```
-remotes:install_github("WangHYLab/scPharm")
+install_github("WangHYLab/scPharm")
 ```
 
 ## Data inputs format
@@ -60,6 +60,8 @@ Dse <- scPharmDse(scPharmIdentify.result)
 ***
 
 Tian P, Zheng J, Xu Y, et al. scPharm: identifying pharmacological subpopulations of single cells for precision medicine in cancers. Published online December 12, 2023. doi:10.1101/2023.12.11.571182
+        
+        
   
 ***
 
