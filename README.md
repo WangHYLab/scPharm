@@ -16,7 +16,7 @@ Within R, set first:
 install.packages("remotes")
 install_github("navinlabcode/copykat")
 ```
-To install CelliD then just type:
+To install scPharm then just type:
 ```
 remotes:install_github("WangHYLab/scPharm")
 ```
