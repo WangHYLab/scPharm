@@ -24,7 +24,7 @@ scPharmIdentify(
 
 \item{type}{the source of cell, cell line or tumor tissue. Can be set to 'cellline' or 'tissue'. Default:tissue}
 
-\item{cancer}{the cancer type of cell}
+\item{cancer}{the cancer type of cell. cancer='pan' means calculating in the context of pan-cancer.}
 
 \item{drug}{the drug name for identifying. If not specified all drugs from GDSC2 project will be taken.}
 

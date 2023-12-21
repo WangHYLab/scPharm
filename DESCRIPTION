@@ -1,9 +1,10 @@
 Package: scPharm
 Title: Identification of pharmacological subpopulations of single cells for precision medicine in cancers
 Version: 1.0.1
-Authors@R: c(person("Peng", "Tian", email = "2131443@tongji.edu.cn",
-  role = c("aut", "cre")),  person("Jie", "Zheng", role= c("aut", "ctb"), email = "2210791@tongji.edu.cn"),
-  person("Haiyun", "Wang", role= c("aut", "ctb"), email = "wanghaiyun@tongji.edu.cn"))
+Authors@R: c(
+    person("Peng", "Tian", email = "2131443@tongji.edu.cn",role = c("aut", "cre")),
+    person("Jie", "Zheng", role= c("aut", "ctb"), email = "2210791@tongji.edu.cn"),
+    person("Haiyun", "Wang", role= c("aut", "ctb"), email = "wanghaiyun@tongji.edu.cn"))
 Description: scPharm is a computational framework tailored for scRNA-seq data, integrating pharmacogenomics profiles to uncover therapeutic heterogeneity within tumours at single-cell resolution.
     The tool not only prioritizes tailored drugs but also provides insight into combination therapy regimen and drug toxicity in cancers.
 License: MIT + file LICENSE
@@ -11,10 +12,10 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 LazyData: true
+biocViews:
 Depends:
     R (>= 4.0),
     Seurat (>= 4.0.0)
-biocViews:
 Imports:
     CelliD,
     fgsea (>= 1.16.0),
@@ -25,5 +26,8 @@ Imports:
     mixtools (>= 2.0.0),
     dplyr (>= 1.1.2),
     sparseMatrixStats (>= 1.2.1),
-    irlba (>= 2.3.5.1)
+    irlba (>= 2.3.5.1),
+Remotes:
+    CRAN,
+    navinlabcode/copykat
 LinkingTo: Rcpp, RcppArmadillo

@@ -2,7 +2,7 @@
 % Please edit documentation in R/scPharmDse.R
 \name{scPharmDse}
 \alias{scPharmDse}
-\title{Predict drug effects}
+\title{Predict drug side effects}
 \usage{
 scPharmDse(object)
 }
@@ -13,7 +13,7 @@ scPharmDse(object)
 a data.frame consist of drug information and drug Dse
 }
 \description{
-Predict drug effects
+Predict drug side effects
 }
 \examples{
 Dse <- scPharmDse(scPharmIdentify.result)
