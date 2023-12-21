@@ -18,7 +18,7 @@ install_github("navinlabcode/copykat")
 ```
 To install scPharm then just type:
 ```
-install_github("WangHYLab/scPharm")
+remotes::install_github("WangHYLab/scPharm")
 ```
 
 ## Data inputs format
