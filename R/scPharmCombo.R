@@ -5,11 +5,17 @@
 #' @param drug name of drug as drug 1. Default:NULL
 #' @param topN number of drugs at top of Dr list as drug 1. Default:1
 #'
-#' @return a list consist of data.frame consist of drug combinations and effects value
+#' @importFrom mixtools normalmixEM
+#' @importFrom utils data
+#'
+#' @return a list consist of data.frame consist of drug combinations and  its effects value
 #' @export
+#' @encoding UTF-8
 #'
 #' @examples
-#' combo <- scPharm(scPahrmIdentify.result, scPharmDr.result)
+#' \dontrun{
+#' combo <- scPharmCombo(scPharmIdentify.result, scPharmDr.result)
+#' }
 scPharmCombo <- function(object,
                          score,
                          drug = NULL,

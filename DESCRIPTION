@@ -14,10 +14,11 @@ RoxygenNote: 7.2.3
 LazyData: true
 biocViews:
 Depends:
-    R (>= 4.0),
-    Seurat (>= 4.0.0)
+    R (>= 4.1),
+    Seurat (>= 4.0.1)
 Imports:
     CelliD,
+    SeuratObject,
     fgsea (>= 1.16.0),
     Rcpp (>= 1.0.11),
     RcppArmadillo (>= 0.12.4.1.0),

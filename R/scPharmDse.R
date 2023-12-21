@@ -5,9 +5,11 @@
 #'
 #' @return a data.frame consist of drug information and drug Dse
 #' @export
-#'
+#' @encoding UTF-8
 #' @examples
+#' \dontrun{
 #' Dse <- scPharmDse(scPharmIdentify.result)
+#' }
 scPharmDse <- function(object) {
   # predict drug side effects
   message("computing Dse")

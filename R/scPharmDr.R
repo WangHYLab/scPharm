@@ -5,9 +5,11 @@
 #'
 #' @return a data.frame consist of drug information and drug Dr
 #' @export
-#'
+#' @encoding UTF-8
 #' @examples
+#' \dontrun{
 #' Dr <- scPharmDr(scPharmIdentify.result)
+#' }
 scPharmDr <- function(object) {
   # compute Dr value for drugs
   message("computing drug rank")

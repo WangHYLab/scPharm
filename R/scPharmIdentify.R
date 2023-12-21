@@ -14,13 +14,28 @@
 #' @param slot slot of seurat object used to run MCA
 #' @param assay assay of seurat object used to run MCA
 #'
+#' @import Seurat
+#' @importFrom copykat copykat
+#' @importFrom sparseMatrixStats rowVars
+#' @importFrom stringr str_length
+#' @importFrom irlba irlba
+#' @importFrom SeuratObject CreateDimReducObject
+#' @importFrom CelliD GetCellGeneSet
+#' @importFrom stats cor.test
+#' @importFrom fgsea fgseaMultilevel
+#' @import dplyr
+#' @importFrom utils data
 #'
 #' @return a seurat object added new meta data
 #' @export
 #'
+#' @useDynLib scPharm
+#' @encoding UTF-8
 #'
 #' @examples
+#' \dontrun{
 #' result <- scPharmIdentify(seurat.object, type = "tissue", cancer = "LUAD")
+#' }
 scPharmIdentify <- function(object,
                             type,
                             cancer,
@@ -30,9 +45,7 @@ scPharmIdentify <- function(object,
                             cores = 4,
                             features = NULL,
                             slot = "data",
-                            assay = "RNA",
-                            bulk_data = bulkdata,
-                            GDSC = gdscdata) {
+                            assay = "RNA") {
 
   # classification class of object
   if(class(object)[1]=="Seurat") {
@@ -124,6 +137,8 @@ scPharmIdentify <- function(object,
                                                  reduction = "mca",
                                                  dims = seq(1,nmcs),
                                                  n.features = nfeatures))
+  bulk_data = bulkdata
+  GDSC = gdscdata
 
   # decipher response
   if (cancer != 'pan') {
@@ -135,7 +150,7 @@ scPharmIdentify <- function(object,
   }
   drug_id <- GDSC[,c(8,9,10,11)]
   drug_id <- drug_id[!duplicated(drug_id$DRUG_ID),]
-  drug_id <- filter(drug_id, !if_all(.fns = is.na))
+  drug_id <- dplyr::filter(drug_id, !dplyr::if_all(.fns = is.na))
   if (!is.null(drug)) {
     drug_id = drug_id[drug_id$DRUG_NAME == drug,]
     if (nrow(drug_id) == 0) {
