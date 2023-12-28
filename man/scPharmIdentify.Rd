@@ -12,7 +12,7 @@ scPharmIdentify(
   drug = NULL,
   nmcs = 50,
   nfeatures = 200,
-  cores = 4,
+  cores = 1,
   features = NULL,
   slot = "data",
   assay = "RNA"
@@ -31,7 +31,7 @@ scPharmIdentify(
 
 \item{nfeatures}{number of genes used to make cell ID}
 
-\item{cores}{number of CPU cores to use}
+\item{cores}{number of CPU cores to use. This parameter can only be set to 1 on windows. Default:1}
 
 \item{features}{character vector of feature names. If not specified all features will be taken.}
 

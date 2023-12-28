@@ -9,7 +9,7 @@
 #' @param drug the drug name for identifying. If not specified all drugs from GDSC2 project will be taken.
 #' @param nmcs number of components to compute and store for MCA, default set to 50
 #' @param nfeatures number of genes used to make cell ID
-#' @param cores number of CPU cores to use
+#' @param cores number of CPU cores to use. This parameter can only be set to 1 on windows. Default:1
 #' @param features character vector of feature names. If not specified all features will be taken.
 #' @param slot slot of seurat object used to run MCA
 #' @param assay assay of seurat object used to run MCA
@@ -42,7 +42,7 @@ scPharmIdentify <- function(object,
                             drug = NULL,
                             nmcs = 50,
                             nfeatures = 200,
-                            cores = 4,
+                            cores = 1,
                             features = NULL,
                             slot = "data",
                             assay = "RNA") {
