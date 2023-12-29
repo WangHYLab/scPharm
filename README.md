@@ -45,7 +45,7 @@ Dr <- scPharmDr(scPharmIdentify.result)
 ##### Identify potential drug combinations
 
 ```
-combo <- scPharm(scPahrmIdentify.result, scPharmDr.result)
+combo <- scPharmCombo(scPahrmIdentify.result, scPharmDr.result)
 ```
 
 ##### Predict drug side effects
@@ -58,6 +58,8 @@ Dse <- scPharmDse(scPharmIdentify.result)
 ***
 
 Tian P, Zheng J, Xu Y, et al. scPharm: identifying pharmacological subpopulations of single cells for precision medicine in cancers. Published online December 12, 2023. doi:10.1101/2023.12.11.571182
+        
+        
         
         
   
