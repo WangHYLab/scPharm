@@ -34,13 +34,13 @@ scPharm use as input single cell data in the form of specific S4 objects.
 
 ```
 data("sysdata", package = "copykat")
-result <- scPharmIdentify(seurat.object, type = "tissue", cancer = "LUAD")
+scPharmIdentify.result <- scPharmIdentify(test_data, type = "tissue", cancer = "BRCA")
 ```
 
 ##### Compute Dr(drug prioritization)
 
 ```
-Dr <- scPharmDr(scPharmIdentify.result)
+scPharmDr.result <- scPharmDr(scPharmIdentify.result)
 ```
 
 ##### Identify potential drug combinations
@@ -59,6 +59,10 @@ Dse <- scPharmDse(scPharmIdentify.result)
 ***
 
 Tian P, Zheng J, Xu Y, et al. scPharm: identifying pharmacological subpopulations of single cells for precision medicine in cancers. Published online December 12, 2023. doi:10.1101/2023.12.11.571182
+        
+        
+        
+        
         
         
         
