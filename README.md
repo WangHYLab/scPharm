@@ -33,6 +33,7 @@ scPharm use as input single cell data in the form of specific S4 objects.
 ##### Identify pharmacological cell subpopulations
 
 ```
+data("sysdata", package = "copykat")
 result <- scPharmIdentify(seurat.object, type = "tissue", cancer = "LUAD")
 ```
 
