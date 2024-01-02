@@ -47,8 +47,8 @@ nmcs: number of components to compute and store for MCA. Default:50
 nfeatures: number of genes used to make cell ID.  
 cores: number of CPU cores to use. This parameter can only be set to 1 on windows platform. Default:1  
 features: character vector of feature names to run MCA. If not specified all features will be taken.  
-slot: slot of seurat object used to run MCA.  
-assay: assay of seurat object used to run MCA.
+slot: slot of seurat object used to run MCA. Default:data.  
+assay: assay of seurat object used to run MCA. Default:RNA.
 
 ##### value
 
