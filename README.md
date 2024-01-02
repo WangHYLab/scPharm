@@ -34,7 +34,11 @@ scPharm use as input single cell data in the form of specific S4 objects.
 
 ```
 data("sysdata", package = "copykat")
+<<<<<<< HEAD
 scPharmIdentify.result <- scPharmIdentify(object = example_data, type = "tissue", cancer = "BRCA")
+=======
+scPharmIdentify.result <- scPharmIdentify(example_data, type = "tissue", cancer = "BRCA")
+>>>>>>> edf6c5dd65c36a4cef48bb6170f5cc583c9bb1f9
 ```
 
 ##### parameter of scPharmIdentify function
@@ -57,7 +61,11 @@ A seurat object added pharmacological label to cells about different drugs in GD
 ##### Compute Dr(drug prioritization)
 
 ```
+<<<<<<< HEAD
 scPharm.Dr <- scPharmDr(scPharmIdentify.result)
+=======
+scPharmDr.result <- scPharmDr(scPharmIdentify.result)
+>>>>>>> edf6c5dd65c36a4cef48bb6170f5cc583c9bb1f9
 ```
 
 ##### parameter of scPharmDr function
@@ -103,6 +111,17 @@ A data frame consisted of three columns. Column 1 and 2 are id and name of drugs
 ***
 
 Tian P, Zheng J, Xu Y, et al. scPharm: identifying pharmacological subpopulations of single cells for precision medicine in cancers. Published online December 12, 2023. doi:10.1101/2023.12.11.571182
+<<<<<<< HEAD
+=======
+        
+        
+        
+        
+        
+        
+        
+        
+>>>>>>> edf6c5dd65c36a4cef48bb6170f5cc583c9bb1f9
   
 ***
 
