@@ -39,15 +39,15 @@ scPharmIdentify.result <- scPharmIdentify(object = example_data, type = "tissue"
 
 ##### parameter of scPharmIdentify function
 
-object: a seurat object of patient or cell line cells(example data can be download from https://github.com/WangHYLab/scPharm/blob/main/example_data.rds).
-type: the source of cell, cell line or tumor tissue. Can be set to 'cellline' or 'tissue'.
-cancer: the TCGA cancer type of the cells (eg: BRCA). cancer='pan' means calculating in the context of pan-cancer.
-drug: the drug name for identifying pharmacological cell subpopulations. If not specified all drugs from GDSC2 project will be taken.
-nmcs: number of components to compute and store for MCA. Default:50
-nfeatures: number of genes used to make cell ID.
-cores: number of CPU cores to use. This parameter can only be set to 1 on windows platform. Default:1
-features: character vector of feature names to run MCA. If not specified all features will be taken.
-slot: slot of seurat object used to run MCA.
+object: a seurat object of patient or cell line cells(example data can be download from https://github.com/WangHYLab/scPharm/blob/main/example_data.rds).  
+type: the source of cell, cell line or tumor tissue. Can be set to 'cellline' or 'tissue'.  
+cancer: the TCGA cancer type of the cells (eg: BRCA). cancer='pan' means calculating in the context of pan-cancer.  
+drug: the drug name for identifying pharmacological cell subpopulations. If not specified all drugs from GDSC2 project will be taken.  
+nmcs: number of components to compute and store for MCA. Default:50  
+nfeatures: number of genes used to make cell ID.  
+cores: number of CPU cores to use. This parameter can only be set to 1 on windows platform. Default:1  
+features: character vector of feature names to run MCA. If not specified all features will be taken.  
+slot: slot of seurat object used to run MCA.  
 assay: assay of seurat object used to run MCA.
 
 ##### value
@@ -76,9 +76,9 @@ scPharm.combo <- scPharmCombo(scPahrmIdentify.result, scPharmDr.result)
 
 ##### parameter of scPharmCombo function
 
-object: a seurat object after running scPharmIdentify function
-score: output of scPharmDr function.
-drug: name of drug as drug 1. Default:NULL
+object: a seurat object after running scPharmIdentify function  
+score: output of scPharmDr function.  
+drug: name of drug as drug 1. Default:NULL  
 topN: number of drugs at top of Dr list as drug 1. Default:1
 
 ##### value
