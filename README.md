@@ -17,7 +17,7 @@ install.packages("remotes")
 ```
 To install scPharm then just type:
 ```
-remotes::install_github("WangHYLab/scPharm", dependencies = )
+remotes::install_github("WangHYLab/scPharm", dependencies = T)
 ```
 
 ## Data inputs format
