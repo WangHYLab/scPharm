@@ -34,7 +34,7 @@ scPharm use as input single cell data in the form of specific S4 objects.
 
 ```
 data("sysdata", package = "copykat")
-scPharmIdentify.result <- scPharmIdentify(example_data_data, type = "tissue", cancer = "BRCA")
+scPharmIdentify.result <- scPharmIdentify(example_data, type = "tissue", cancer = "BRCA")
 ```
 
 ##### Compute Dr(drug prioritization)
