@@ -47,10 +47,10 @@ nfeatures: number of genes used to make cell ID.
 cores: number of CPU cores to use. This parameter can only be set to 1 on windows platform. Default:1  
 features: character vector of feature names to run MCA. If not specified all features will be taken.  
 slot: slot of seurat object used to run MCA.  
-assay: assay of seurat object used to run MCA.
-threshold.s: the threshold to label sensitive cells. Default: -1.751302
-threshold.r: the threshold to label resistant cells. Default: 1.518551
-bulkdata: file for all cancer cell lines, automatically loaded in scPharm.
+assay: assay of seurat object used to run MCA.  
+threshold.s: the threshold to label sensitive cells. Default: -1.751302 
+threshold.r: the threshold to label resistant cells. Default: 1.518551  
+bulkdata: file for all cancer cell lines, automatically loaded in scPharm.  
 gdscdata: pharmacological file for all cancer cell lines, automatically loaded in scPharm.
 
 ##### value
@@ -118,8 +118,8 @@ nfeatures: number of genes used to make cell ID.
 cores: number of CPU cores to use. This parameter can only be set to 1 on windows platform. Default:1  
 features: character vector of feature names to run MCA. If not specified all features will be taken.  
 slot: slot of seurat object used to run MCA.  
-assay: assay of seurat object used to run MCA.
-bulkdata: file for all cancer cell lines, automatically loaded in scPharm.
+assay: assay of seurat object used to run MCA.  
+bulkdata: file for all cancer cell lines, automatically loaded in scPharm.  
 gdscdata: pharmacological file for all cancer cell lines, automatically loaded in scPharm.
 
 
