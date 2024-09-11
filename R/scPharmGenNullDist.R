@@ -1,22 +1,17 @@
-#' Identify pharmacological cell subpopulations
+#' Generate the null distribution and calculate the thresholds for labeling sensitive and resistant cells
 #'
 #' @param object Seurat object
-#' @param type the source of cell, cell line or tumor tissue. Can be set to 'cellline' or 'tissue'.
-#' @param cancer the TCGA cancer type of cell. A character or vector.(eg: BRCA or c('LUAD', 'LUSC')). cancer='pan' means calculating in the context of pan-cancer.
-#' @param drug the drug name for identifying. If not specified all drugs from GDSC2 project will be taken.
+#' @param cancer the TCGA cancer type associated with your cells for constructing null distribution. A character or vector.(eg: BRCA or c('LUAD', 'LUSC')). cancer='pan' means calculating in the context of pan-cancer.
 #' @param nmcs number of components to compute and store for MCA. Default:50
 #' @param nfeatures number of genes used to make cell ID
 #' @param cores number of CPU cores to use. This parameter can only be set to 1 on windows. Default:1
-#' @param features character vector of feature names. If not specified all features will be taken.
+#' @param features character vector of feature names for MCA. If not specified all features will be taken.
 #' @param slot slot of seurat object used to run MCA
 #' @param assay assay of seurat object used to run MCA
-#' @param threshold.s the threshold to label sensitive cells. Default: -1.751302
-#' @param threshold.r the threshold to label resistant cells. Default: 1.518551
 #' @param bulkdata file for all cancer cell lines, automatically loaded in scPharm.
 #' @param gdscdata pharmacological file for all cancer cell lines, automatically loaded in scPharm.
 #'
 #' @import Seurat
-#' @importFrom copykat copykat
 #' @importFrom sparseMatrixStats rowVars
 #' @importFrom stringr str_length
 #' @importFrom irlba irlba
@@ -26,8 +21,10 @@
 #' @importFrom fgsea fgseaMultilevel
 #' @import dplyr
 #' @importFrom utils data
+#' @importFrom tidyr gather
+#' @importFrom mixtools normalmixEM
 #'
-#' @return a seurat object added new meta data
+#' @return a list contains the null distribution(NullDist), thresholds for labeling sensitive and resistant cells(threshold_s and threshold_r).
 #' @export
 #'
 #' @useDynLib scPharm
@@ -37,20 +34,16 @@
 #' \dontrun{
 #' result <- scPharmIdentify(seurat.object, type = "tissue", cancer = "LUAD")
 #' }
-scPharmIdentify <- function(object,
-                            type,
-                            cancer,
-                            drug = NULL,
-                            nmcs = 50,
-                            nfeatures = 200,
-                            cores = 1,
-                            features = NULL,
-                            slot = "data",
-                            assay = "RNA",
-                            threshold.s = -1.751302,
-                            threshold.r = 1.518551,
-                            bulkdata = bulkdata,
-                            gdscdata = gdscdata) {
+scPharmGenNullDist <- function(object,
+                               cancer,
+                               nmcs = 50,
+                               nfeatures = 200,
+                               cores = 1,
+                               features = NULL,
+                               slot = "data",
+                               assay = "RNA",
+                               bulkdata = bulkdata,
+                               gdscdata = gdscdata) {
   # classification class of object
   if (class(object)[1] == "Seurat") {
     InitAssay <- DefaultAssay(object)
@@ -61,37 +54,6 @@ scPharmIdentify <- function(object,
     return(NULL)
   }
 
-  # identify tumor or adjacent cell
-  if (type == "tissue") {
-    message("Identifying tumor or adjacent cells")
-    data("sysdata", package = "copykat")
-    # tic()
-    exp.rawdata <- GetAssayData(object, slot = "counts")
-    out <- file("scPharm_copykat_out.txt", open = "w")
-    sink(out, type = "output")
-    copykat.result <- copykat::copykat(exp.rawdata,
-      id.type = "S",
-      ngene.chr = 3,
-      win.size = 25,
-      KS.cut = 0.1,
-      sam.name = "scPharm",
-      distance = "euclidean",
-      n.cores = cores,
-      norm.cell.names = "",
-      output.seg = FALSE,
-      plot.genes = FALSE
-    )
-    sink()
-    close(out)
-    # toc()
-    object@meta.data[, "cell.label"] <- "adjacent"
-    pred.label <- data.frame(copykat.result$prediction)
-    tumor.cells <- pred.label$cell.names[which(pred.label$copykat.pred == "aneuploid")]
-    object@meta.data[tumor.cells, "cell.label"] <- "tumor"
-    system("rm -f *_copykat_*")
-  } else {
-    object@meta.data[, "cell.label"] <- "tumor"
-  }
 
   # MCA
   reduction.name <- "mca"
@@ -170,12 +132,7 @@ scPharmIdentify <- function(object,
   drug_id <- GDSC[, c(8, 9, 10, 11)]
   drug_id <- drug_id[!duplicated(drug_id$DRUG_ID), ]
   drug_id <- dplyr::filter(drug_id, !dplyr::if_all(.fns = is.na))
-  if (!is.null(drug)) {
-    drug_id <- drug_id[drug_id$DRUG_NAME == drug, ]
-    if (nrow(drug_id) == 0) {
-      return(message("ERROR:: no drug data about such cancers!"))
-    }
-  }
+
   meta.data <- object@meta.data
 
   # scPharm
@@ -223,23 +180,21 @@ scPharmIdentify <- function(object,
       if (nrow(enrich_drug) == 0) {
         label <- data.frame(cell = rownames(meta.data), nes = 0)
         rownames(label) <- label$cell
-        label$label <- "other"
       } else {
         label <- data.frame(cell = rownames(meta.data), nes = 0)
         rownames(label) <- label$cell
         label[enrich_drug$pathway, 2] <- enrich_drug[, 6]
-        label$label <- "other"
-        label[label$nes > threshold.r, 3] <- "resistant"
-        label[label$nes < threshold.s, 3] <- "sensitive"
       }
-      col_name <- c(
-        paste("scPharm_label", drug_id$DRUG_ID[i], drug_id$DRUG_NAME[i], sep = "_"),
-        paste("scPharm_nes", drug_id$DRUG_ID[i], drug_id$DRUG_NAME[i], sep = "_")
-      )
-      meta.data[, col_name] <- label[, c("label", "nes")]
+      col_name <- paste("scPharm_nes", drug_id$DRUG_ID[i], drug_id$DRUG_NAME[i], sep = "_")
+      meta.data[, col_name] <- label[, "nes"]
       i <- i + 1
     }
   }
-  object@meta.data <- meta.data
-  return(object)
+  meta.data <- meta.data[, grep("scPharm_nes", colnames(meta.data), value = T)]
+  meta.data.long <- gather(meta.data, key = "Drug", value = "NES")
+  out.mix <- normalmixEM(meta.data.long$NES)
+  threshold.s <- out.mix$mu[1] - out.mix$sigma[1]
+  threshold.r <- out.mix$mu[2] + out.mix$sigma[2]
+
+  return(list(NullDist = meta.data.long$NES, threshold_r = threshold.r, threshold_s = threshold.s))
 }
