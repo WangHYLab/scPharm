@@ -17,7 +17,7 @@ install.packages("remotes")
 ```
 To install scPharm then just type:
 ```
-remotes::install_github("WangHYLab/scPharm", dependencies = )
+remotes::install_github("WangHYLab/scPharm", dependencies = T)
 ```
 
 ## Data inputs format
@@ -33,7 +33,6 @@ scPharm use as input single cell data in the form of specific S4 objects.
 ##### Identify pharmacological cell subpopulations
 
 ```
-data("sysdata", package = "copykat")
 scPharmIdentify.result <- scPharmIdentify(object = example_data, type = "tissue", cancer = "BRCA")
 ```
 
@@ -41,7 +40,7 @@ scPharmIdentify.result <- scPharmIdentify(object = example_data, type = "tissue"
 
 object: a seurat object of patient or cell line cells(example data can be download from https://github.com/WangHYLab/scPharm/blob/main/example_data.rds).  
 type: the source of cell, cell line or tumor tissue. Can be set to 'cellline' or 'tissue'.  
-cancer: the TCGA cancer type of the cells (eg: BRCA). cancer='pan' means calculating in the context of pan-cancer.  
+cancer: the TCGA cancer type of cell. A character or vector.(eg: BRCA or c('LUAD', 'LUSC')). cancer='pan' means calculating in the context of pan-cancer.  
 drug: the drug name for identifying pharmacological cell subpopulations. If not specified all drugs from GDSC2 project will be taken.  
 nmcs: number of components to compute and store for MCA. Default:50  
 nfeatures: number of genes used to make cell ID.  
@@ -49,6 +48,10 @@ cores: number of CPU cores to use. This parameter can only be set to 1 on window
 features: character vector of feature names to run MCA. If not specified all features will be taken.  
 slot: slot of seurat object used to run MCA.  
 assay: assay of seurat object used to run MCA.
+threshold.s: the threshold to label sensitive cells. Default: -1.751302
+threshold.r: the threshold to label resistant cells. Default: 1.518551
+bulkdata: file for all cancer cell lines, automatically loaded in scPharm.
+gdscdata: pharmacological file for all cancer cell lines, automatically loaded in scPharm.
 
 ##### value
 
@@ -80,6 +83,7 @@ object: a seurat object after running scPharmIdentify function
 score: output of scPharmDr function.  
 drug: name of drug as drug 1. Default:NULL  
 topN: number of drugs at top of Dr list as drug 1. Default:1
+drug_info: file for all drugs, automatically loaded in scPharm.
 
 ##### value
 
@@ -108,13 +112,16 @@ scPharmGenNullDist.result <- scPharmGenNullDist(object = example_data, cancer = 
 ##### parameter of scPharmGenNullDist function
 
 object: a seurat object of patient or cell line cells(example data can be download from https://github.com/WangHYLab/scPharm/blob/main/example_data.rds).  
-cancer: the TCGA cancer type of the cells (eg: BRCA). cancer='pan' means calculating in the context of pan-cancer.  
+cancer: the TCGA cancer type of cell. A character or vector.(eg: BRCA or c('LUAD', 'LUSC')). cancer='pan' means calculating in the context of pan-cancer. 
 nmcs: number of components to compute and store for MCA. Default:50  
 nfeatures: number of genes used to make cell ID.  
 cores: number of CPU cores to use. This parameter can only be set to 1 on windows platform. Default:1  
 features: character vector of feature names to run MCA. If not specified all features will be taken.  
 slot: slot of seurat object used to run MCA.  
 assay: assay of seurat object used to run MCA.
+bulkdata: file for all cancer cell lines, automatically loaded in scPharm.
+gdscdata: pharmacological file for all cancer cell lines, automatically loaded in scPharm.
+
 
 ##### value
 
