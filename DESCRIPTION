@@ -1,6 +1,6 @@
 Package: scPharm
 Title: Identification of pharmacological subpopulations of single cells for precision medicine in cancers
-Version: 1.0.1
+Version: 1.0.2
 Authors@R: c(
     person("Peng", "Tian", email = "2131443@tongji.edu.cn",role = c("aut", "cre")),
     person("Jie", "Zheng", role= c("aut", "ctb"), email = "2210791@tongji.edu.cn"),
@@ -12,7 +12,6 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 LazyData: true
-biocViews:
 Depends:
     R (>= 4.1),
     Seurat (>= 4.0.1)
@@ -28,6 +27,8 @@ Imports:
     dplyr (>= 1.1.2),
     sparseMatrixStats (>= 1.2.1),
     irlba (>= 2.3.5.1),
+    Matrix (>= 1.6-0),
+    tidyr (>= 1.3.0)
 Remotes:
     CRAN,
     navinlabcode/copykat
