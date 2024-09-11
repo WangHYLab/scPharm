@@ -5,7 +5,7 @@
 \alias{scPharmCombo}
 \title{Identify potential drug combinations}
 \usage{
-scPharmCombo(object, score, drug = NULL, topN = 1)
+scPharmCombo(object, score, drug = NULL, topN = 1, drug_info = drug_info)
 }
 \arguments{
 \item{object}{Seurat object after running scPharmIdentify function}
@@ -15,6 +15,8 @@ scPharmCombo(object, score, drug = NULL, topN = 1)
 \item{drug}{name of drug as drug 1. Default:NULL}
 
 \item{topN}{number of drugs at top of Dr list as drug 1. Default:1}
+
+\item{drug_info}{file for all drugs, automatically loaded in scPharm.}
 }
 \value{
 a list consist of data.frame consist of drug combinations and  its effects value
