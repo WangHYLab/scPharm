@@ -111,7 +111,7 @@ scPharmGenNullDist.result <- scPharmGenNullDist(object = example_data, cancer = 
 
 ##### parameter of scPharmGenNullDist function
 
-object: a seurat object of patient or cell line cells(example data can be download from https://github.com/WangHYLab/scPharm/blob/main/example_data.rds).  
+object: a seurat object of cells from healthy tissue.  
 cancer: the TCGA cancer type of cell. A character or vector.(eg: BRCA or c('LUAD', 'LUSC')). cancer='pan' means calculating in the context of pan-cancer. 
 nmcs: number of components to compute and store for MCA. Default:50  
 nfeatures: number of genes used to make cell ID.  
