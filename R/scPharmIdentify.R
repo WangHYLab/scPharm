@@ -149,7 +149,7 @@ scPharmIdentify <- function(object,
   GDSC <- gdscdata
 
   # decipher response
-  if (is.character(cancer)) {
+  if (is.character(cancer) && length(cancer) == 1) {
     if (cancer != "pan") {
       if (cancer %in% unique(GDSC$TCGA_DESC)) {
         GDSC <- GDSC[GDSC$TCGA_DESC == cancer, ]
@@ -157,8 +157,8 @@ scPharmIdentify <- function(object,
         message("ERROR: unrecognized cancer type")
       }
     }
-  } else if (is.vector(cancer)) {
-    if (cancer %in% unique(GDSC$TCGA_DESC)) {
+  } else if (is.vector(cancer) && length(cancer) > 1) {
+    if (length(intersect(cancer, unique(GDSC$TCGA_DESC))) == length(cancer)) {
       GDSC <- GDSC[which(GDSC$TCGA_DESC %in% cancer), ]
     } else {
       message("ERROR: contains the wrong cancer type")
